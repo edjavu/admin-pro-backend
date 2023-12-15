@@ -5,6 +5,7 @@ const express = require('express');
 const cors = require('cors')
 
 const { dbConnection } = require('./database/config');
+const { patch } = require('./routes/usuarios');
 
 // Crear el servidor de express
 const app = express();
@@ -31,7 +32,10 @@ app.use( '/api/todo', require('./routes/busquedas') );
 app.use( '/api/upload', require('./routes/uploads') );
 
 
-
+// Lo ultimo
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve( __dirname, 'public/index.html'))  
+})
 
 
 app.listen(process.env.PORT, () => {
